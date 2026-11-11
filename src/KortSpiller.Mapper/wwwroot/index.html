@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kortspiller – kortmapper</title>
+<style>
+  :root { --bg:#121212; --card:#1e1e1e; --line:#2e2e2e; --fg:#f2f2f2; --mute:#9a9a9a; --green:#1db954; --red:#e5484d; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:16px/1.45 system-ui,sans-serif; background:var(--bg); color:var(--fg); }
+  main { max-width:900px; margin:0 auto; padding:1rem; }
+  h1 { font-size:1.5rem; } h2 { font-size:1.1rem; margin-top:0; }
+  section { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:1rem; margin-bottom:1rem; }
+  label { display:block; color:var(--mute); font-size:.85rem; margin:.7rem 0 .25rem; }
+  input, select, button { font:inherit; border-radius:10px; border:1px solid var(--line); background:#262626; color:var(--fg); padding:.6rem .8rem; }
+  input, select { width:100%; }
+  button { cursor:pointer; background:var(--green); color:#000; border:0; font-weight:600; }
+  button.ghost { background:#262626; color:var(--fg); border:1px solid var(--line); }
+  button.danger { background:transparent; color:var(--red); border:1px solid var(--red); padding:.3rem .6rem; }
+  .row { display:flex; gap:.5rem; flex-wrap:wrap; align-items:end; } .row > * { flex:1 1 200px; }
+  .row .fit { flex:0 0 auto; }
+  .msg { min-height:1.4em; margin:.6rem 0 0; } .err { color:var(--red); } .ok { color:var(--green); }
+  ul { list-style:none; margin:0; padding:0; }
+  li.card { display:flex; gap:.8rem; align-items:center; padding:.6rem 0; border-top:1px solid var(--line); }
+  li.card img, .ph { width:56px; height:56px; border-radius:8px; object-fit:cover; background:#333; flex:0 0 56px; }
+  .info { flex:1; min-width:0; } .info b, .info small { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  small { color:var(--mute); }
+  .tabs button { background:#262626; color:var(--fg); border:1px solid var(--line); } .tabs button.on { background:var(--green); color:#000; }
+</style>
+</head>
+<body>
+<main>
+  <h1>🎵 Kortspiller – kortmapper</h1>
+
+  <section>
+    <h2>Koble kort til sang</h2>
+    <label for="uid">Kort-ID (skann kortet – feltet er i fokus, så en USB-leser skriver rett inn)</label>
+    <div class="row">
+      <input id="uid" placeholder="Skann kort eller skriv ID" autocomplete="off" autofocus>
+      <button id="scan" class="ghost fit" hidden>Skann med tilkoblet leser</button>
+    </div>
+
+    <div class="row tabs" style="margin-top:.8rem">
+      <button id="tabSong" class="fit on">Spotify-lenke</button>
+      <button id="tabCmd" class="fit">Kommando-kort</button>
+    </div>
+
+    <div id="songBox">
+      <label for="url">Spotify-lenke (Del → Kopier lenke)</label>
+      <input id="url" placeholder="https://open.spotify.com/track/…" autocomplete="off">
+    </div>
+    <div id="cmdBox" hidden>
+      <label for="action">Kommando</label>
+      <select id="action"></select>
+    </div>
+
+    <label for="note">Notat (valgfritt)</label>
+    <input id="note" autocomplete="off">
+    <div class="row" style="margin-top:.8rem"><button id="save" class="fit">Lagre</button></div>
+    <p id="msg" class="msg"></p>
+  </section>
+
+  <section>
+    <h2>Kort <small id="count"></small></h2>
+    <ul id="list"></ul>
+    <p><small id="file"></small></p>
+  </section>
+
+  <section>
+    <h2>Overfør til spilleren</h2>
+    <div class="row">
+      <button id="publish" class="fit" hidden>Publiser til server</button>
+      <a href="/api/export" download="mappings.json"><button class="ghost fit" type="button">Last ned mappings.json</button></a>
+      <label class="fit" style="margin:0"><button class="ghost" type="button" onclick="this.nextElementSibling.click()">Importer fil</button><input id="import" type="file" accept=".json" hidden></label>
+    </div>
+    <p id="msg2" class="msg"></p>
+  </section>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+let mode = 'song';
+const say = (el, text, ok) => { el.textContent = text; el.className = 'msg ' + (ok ? 'ok' : 'err'); };
+const esc = s => (s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+async function api(url, opts) {
+  const r = await fetch(url, opts);
+  if (r.status === 204) return null;
+  const body = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(body.error || `Feil ${r.status}`);
+  return body;
+}
+
+function setMode(m) {
+  mode = m;
+  $('songBox').hidden = m !== 'song'; $('cmdBox').hidden = m !== 'cmd';
+  $('tabSong').classList.toggle('on', m === 'song'); $('tabCmd').classList.toggle('on', m === 'cmd');
+}
+$('tabSong').onclick = () => setMode('song'); $('tabCmd').onclick = () => setMode('cmd');
+
+async function refresh() {
+  const file = await api('/api/cards');
+  $('count').textContent = `(${file.cards.length})`;
+  $('list').innerHTML = file.cards.map(c => `
+    <li class="card">
+      ${c.image ? `<img src="${esc(c.image)}" alt="">` : '<div class="ph"></div>'}
+      <div class="info"><b>${esc(c.title || c.uri || c.action)}</b>
+        <small>${esc(c.uid)} · ${c.action ? 'kommando: ' + esc(c.action) : esc(c.uri)}${c.note ? ' · ' + esc(c.note) : ''}</small></div>
+      <button class="danger" data-uid="${esc(c.uid)}">Slett</button>
+    </li>`).join('') || '<li><small>Ingen kort ennå.</small></li>';
+}
+
+$('list').onclick = async e => {
+  const uid = e.target.dataset?.uid;
+  if (uid && confirm('Slette dette kortet?')) { await fetch('/api/cards/' + encodeURIComponent(uid), { method: 'DELETE' }); refresh(); }
+};
+
+async function save() {
+  const body = { uid: $('uid').value, note: $('note').value };
+  if (mode === 'song') body.url = $('url').value; else body.action = $('action').value;
+  try {
+    const card = await api('/api/cards', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+    say($('msg'), `Lagret: ${card.title} → kort ${card.uid}`, true);
+    $('uid').value = ''; $('url').value = ''; $('note').value = ''; $('uid').focus();
+    refresh();
+  } catch (e) { say($('msg'), e.message); }
+}
+$('save').onclick = save;
+$('url').onkeydown = e => { if (e.key === 'Enter') save(); };
+$('uid').onkeydown = e => { if (e.key === 'Enter') { e.preventDefault(); (mode === 'song' ? $('url') : $('save')).focus(); } };
+
+$('scan').onclick = async () => {
+  say($('msg'), 'Hold kortet mot leseren …', true);
+  try {
+    const r = await api('/api/scan?timeout=15');
+    if (r) { $('uid').value = r.uid; say($('msg'), 'Kort lest.', true); $('url').focus(); } else say($('msg'), 'Fant ikke noe kort.');
+  } catch (e) { say($('msg'), e.message); }
+};
+
+$('publish').onclick = async () => {
+  try { await api('/api/publish', { method: 'POST' }); say($('msg2'), 'Publisert.', true); } catch (e) { say($('msg2'), e.message); }
+};
+$('import').onchange = async e => {
+  const f = e.target.files[0]; if (!f) return;
+  try { const r = await api('/api/import', { method: 'POST', body: await f.text() }); say($('msg2'), `Importerte ${r.count} kort.`, true); refresh(); }
+  catch (err) { say($('msg2'), err.message); }
+  e.target.value = '';
+};
+
+(async () => {
+  const cfg = await api('/api/config');
+  $('scan').hidden = !cfg.scanAvailable; $('publish').hidden = !cfg.publishAvailable;
+  $('action').innerHTML = cfg.actions.map(a => `<option value="${a.id}">${a.label}</option>`).join('');
+  $('file').textContent = 'Mappingfil: ' + cfg.mappingFile;
+  refresh();
+})();
+</script>
+</body>
+</html>

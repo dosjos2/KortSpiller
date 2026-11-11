@@ -1,0 +1,12 @@
+# /etc/raspotify/conf  (eksempel - kopier relevante linjer)
+# Navnet MÅ være likt Spotify:DeviceName i appsettings for Player.
+LIBRESPOT_NAME="Kortspiller"
+LIBRESPOT_BITRATE="160"
+LIBRESPOT_INITIAL_VOLUME="40"
+LIBRESPOT_QUIET=on
+
+# Lydutgang. Finn navn med:  aplay -L
+# 3,5 mm-utgang (Pi 3/4):      LIBRESPOT_DEVICE="plughw:CARD=Headphones,DEV=0"
+# USB-lydkort:                  LIBRESPOT_DEVICE="plughw:CARD=Device,DEV=0"
+# I2S DAC (PCM5102/HiFiBerry):  LIBRESPOT_DEVICE="plughw:CARD=sndrpihifiberry,DEV=0"
+#LIBRESPOT_DEVICE="default"

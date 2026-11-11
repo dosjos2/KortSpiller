@@ -1,0 +1,18 @@
+[Unit]
+Description=Kortspiller - RFID til Spotify
+After=network-online.target raspotify.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=kortspiller
+Group=kortspiller
+SupplementaryGroups=gpio spi i2c input dialout
+WorkingDirectory=/opt/kortspiller
+ExecStart=/opt/kortspiller/KortSpiller.Player
+Restart=always
+RestartSec=5
+Environment=DOTNET_BUNDLE_EXTRACT_BASE_DIR=/tmp/kortspiller
+
+[Install]
+WantedBy=multi-user.target

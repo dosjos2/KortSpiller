@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1260 820" font-family="Segoe UI, Arial, sans-serif">
+<title>Kortspiller - kobling RC522, potmeter, knapp og LED</title>
+<rect width="100%" height="100%" fill="#fff"/>
+<text x="630" y="34" font-size="20" fill="#222" text-anchor="middle" font-weight="700">Kortspiller – kobling med RC522 (SPI), potmeter (MCP3008), pauseknapp og LED</text>
+<text x="630" y="56" font-size="13" fill="#b91c1c" text-anchor="middle" >Raspberry Pi 40-pins header. Alt er 3,3 V – RC522 må ALDRI kobles til 5 V.</text>
+<rect x="400" y="80" width="200" height="660" rx="10" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+<text x="500" y="108" font-size="16" fill="#222" text-anchor="middle" font-weight="700">Raspberry Pi</text>
+<rect x="60" y="90" width="180" height="300" rx="10" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+<text x="150" y="84" font-size="15" fill="#222" text-anchor="middle" font-weight="700">RC522 RFID-leser</text>
+<line x1="240" y1="120" x2="400" y2="120" stroke="#e5484d" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="240" cy="120" r="5" fill="#e5484d" stroke="#222"/>
+<circle cx="400" cy="120" r="5" fill="#e5484d" stroke="#222"/>
+<text x="232" y="124" font-size="12" fill="#222" text-anchor="end" >3.3V</text>
+<text x="408" y="124" font-size="12" fill="#222" text-anchor="start" >pin 1</text>
+<text x="466" y="124" font-size="12" fill="#555" text-anchor="start" >3V3</text>
+<line x1="240" y1="160" x2="400" y2="160" stroke="#555" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="240" cy="160" r="5" fill="#555" stroke="#222"/>
+<circle cx="400" cy="160" r="5" fill="#555" stroke="#222"/>
+<text x="232" y="164" font-size="12" fill="#222" text-anchor="end" >GND</text>
+<text x="408" y="164" font-size="12" fill="#222" text-anchor="start" >pin 6</text>
+<text x="466" y="164" font-size="12" fill="#555" text-anchor="start" >GND</text>
+<line x1="240" y1="200" x2="400" y2="200" stroke="#eab308" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="240" cy="200" r="5" fill="#eab308" stroke="#222"/>
+<circle cx="400" cy="200" r="5" fill="#eab308" stroke="#222"/>
+<text x="232" y="204" font-size="12" fill="#222" text-anchor="end" >RST</text>
+<text x="408" y="204" font-size="12" fill="#222" text-anchor="start" >pin 22</text>
+<text x="466" y="204" font-size="12" fill="#555" text-anchor="start" >GPIO25</text>
+<line x1="240" y1="240" x2="400" y2="240" stroke="#22c55e" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="240" cy="240" r="5" fill="#22c55e" stroke="#222"/>
+<circle cx="400" cy="240" r="5" fill="#22c55e" stroke="#222"/>
+<text x="232" y="244" font-size="12" fill="#222" text-anchor="end" >MISO</text>
+<text x="408" y="244" font-size="12" fill="#222" text-anchor="start" >pin 21</text>
+<text x="466" y="244" font-size="12" fill="#555" text-anchor="start" >MISO</text>
+<line x1="240" y1="280" x2="400" y2="280" stroke="#3b82f6" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="240" cy="280" r="5" fill="#3b82f6" stroke="#222"/>
+<circle cx="400" cy="280" r="5" fill="#3b82f6" stroke="#222"/>
+<text x="232" y="284" font-size="12" fill="#222" text-anchor="end" >MOSI</text>
+<text x="408" y="284" font-size="12" fill="#222" text-anchor="start" >pin 19</text>
+<text x="466" y="284" font-size="12" fill="#555" text-anchor="start" >MOSI</text>
+<line x1="240" y1="320" x2="400" y2="320" stroke="#f59e0b" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="240" cy="320" r="5" fill="#f59e0b" stroke="#222"/>
+<circle cx="400" cy="320" r="5" fill="#f59e0b" stroke="#222"/>
+<text x="232" y="324" font-size="12" fill="#222" text-anchor="end" >SCK</text>
+<text x="408" y="324" font-size="12" fill="#222" text-anchor="start" >pin 23</text>
+<text x="466" y="324" font-size="12" fill="#555" text-anchor="start" >SCLK</text>
+<line x1="240" y1="360" x2="400" y2="360" stroke="#a855f7" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="240" cy="360" r="5" fill="#a855f7" stroke="#222"/>
+<circle cx="400" cy="360" r="5" fill="#a855f7" stroke="#222"/>
+<text x="232" y="364" font-size="12" fill="#222" text-anchor="end" >SDA (SS)</text>
+<text x="408" y="364" font-size="12" fill="#222" text-anchor="start" >pin 24</text>
+<text x="466" y="364" font-size="12" fill="#555" text-anchor="start" >CE0</text>
+<text x="150" y="388" font-size="12" fill="#666" text-anchor="middle" >IRQ: ikke tilkoblet</text>
+<rect x="800" y="190" width="190" height="340" rx="10" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+<text x="895" y="182" font-size="15" fill="#222" text-anchor="middle" font-weight="700">MCP3008 (ADC)</text>
+<line x1="600" y1="240" x2="800" y2="240" stroke="#22c55e" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="600" cy="240" r="5" fill="#22c55e" stroke="#222"/>
+<circle cx="800" cy="240" r="5" fill="#22c55e" stroke="#222"/>
+<text x="592" y="244" font-size="12" fill="#222" text-anchor="end" >MISO · pin 21</text>
+<text x="808" y="244" font-size="12" fill="#222" text-anchor="start" >DOUT (12)</text>
+<line x1="600" y1="280" x2="800" y2="280" stroke="#3b82f6" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="600" cy="280" r="5" fill="#3b82f6" stroke="#222"/>
+<circle cx="800" cy="280" r="5" fill="#3b82f6" stroke="#222"/>
+<text x="592" y="284" font-size="12" fill="#222" text-anchor="end" >MOSI · pin 19</text>
+<text x="808" y="284" font-size="12" fill="#222" text-anchor="start" >DIN (11)</text>
+<line x1="600" y1="320" x2="800" y2="320" stroke="#f59e0b" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="600" cy="320" r="5" fill="#f59e0b" stroke="#222"/>
+<circle cx="800" cy="320" r="5" fill="#f59e0b" stroke="#222"/>
+<text x="592" y="324" font-size="12" fill="#222" text-anchor="end" >SCLK · pin 23</text>
+<text x="808" y="324" font-size="12" fill="#222" text-anchor="start" >CLK (13)</text>
+<line x1="600" y1="400" x2="800" y2="400" stroke="#a855f7" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="600" cy="400" r="5" fill="#a855f7" stroke="#222"/>
+<circle cx="800" cy="400" r="5" fill="#a855f7" stroke="#222"/>
+<text x="592" y="404" font-size="12" fill="#222" text-anchor="end" >GPIO7 CE1 · pin 26</text>
+<text x="808" y="404" font-size="12" fill="#222" text-anchor="start" >CS (10)</text>
+<line x1="600" y1="440" x2="800" y2="440" stroke="#e5484d" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="600" cy="440" r="5" fill="#e5484d" stroke="#222"/>
+<circle cx="800" cy="440" r="5" fill="#e5484d" stroke="#222"/>
+<text x="592" y="444" font-size="12" fill="#222" text-anchor="end" >3V3 · pin 17</text>
+<text x="808" y="444" font-size="12" fill="#222" text-anchor="start" >VDD (16)</text>
+<line x1="600" y1="480" x2="800" y2="480" stroke="#555" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="600" cy="480" r="5" fill="#555" stroke="#222"/>
+<circle cx="800" cy="480" r="5" fill="#555" stroke="#222"/>
+<text x="592" y="484" font-size="12" fill="#222" text-anchor="end" >GND · pin 25</text>
+<text x="808" y="484" font-size="12" fill="#222" text-anchor="start" >AGND (14)</text>
+<line x1="800" y1="460" x2="890" y2="460" stroke="#e5484d" stroke-width="3.5" stroke-linecap="round"/>
+<text x="808" y="464" font-size="12" fill="#222" text-anchor="start" >VREF (15)</text>
+<line x1="890" y1="440" x2="890" y2="460" stroke="#e5484d" stroke-width="3.5" stroke-linecap="round"/>
+<line x1="800" y1="500" x2="890" y2="500" stroke="#555" stroke-width="3.5" stroke-linecap="round"/>
+<text x="808" y="504" font-size="12" fill="#222" text-anchor="start" >DGND (9)</text>
+<line x1="890" y1="480" x2="890" y2="500" stroke="#555" stroke-width="3.5" stroke-linecap="round"/>
+<text x="895" y="542" font-size="11" fill="#666" text-anchor="middle" >VDD+VREF til 3V3, AGND+DGND til GND (jumpere)</text>
+<line x1="990" y1="360" x2="1090" y2="360" stroke="#14b8a6" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="990" cy="360" r="5" fill="#14b8a6" stroke="#222"/>
+<text x="982" y="364" font-size="12" fill="#222" text-anchor="end" >CH0 (1)</text>
+<rect x="1090" y="310" width="140" height="110" rx="10" fill="#f3e5f5" stroke="#6a1b9a" stroke-width="2"/>
+<text x="1160" y="328" font-size="13" fill="#222" text-anchor="middle" font-weight="700">Potmeter 10 kΩ</text>
+<text x="1100" y="364" font-size="11" fill="#222" text-anchor="start" >Midtben (vipper)</text>
+<text x="1100" y="344" font-size="11" fill="#222" text-anchor="start" >Ytterben 1 → 3V3</text>
+<text x="1100" y="390" font-size="11" fill="#222" text-anchor="start" >Ytterben 2 → GND</text>
+<line x1="600" y1="600" x2="800" y2="600" stroke="#14b8a6" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="600" cy="600" r="5" fill="#14b8a6" stroke="#222"/>
+<circle cx="800" cy="600" r="5" fill="#14b8a6" stroke="#222"/>
+<text x="592" y="604" font-size="12" fill="#222" text-anchor="end" >GPIO27 · pin 13</text>
+<rect x="800" y="580" width="190" height="40" rx="10" fill="#fce4ec" stroke="#ad1457" stroke-width="2"/>
+<text x="895" y="605" font-size="12" fill="#222" text-anchor="middle" >Pauseknapp ben A</text>
+<line x1="600" y1="640" x2="800" y2="640" stroke="#14b8a6" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="600" cy="640" r="5" fill="#14b8a6" stroke="#222"/>
+<circle cx="800" cy="640" r="5" fill="#14b8a6" stroke="#222"/>
+<text x="592" y="644" font-size="12" fill="#222" text-anchor="end" >GPIO22 · pin 15</text>
+<rect x="800" y="620" width="190" height="40" rx="10" fill="#fffde7" stroke="#f9a825" stroke-width="2"/>
+<text x="895" y="645" font-size="12" fill="#222" text-anchor="middle" >330 Ω → LED anode (+)</text>
+<line x1="600" y1="680" x2="800" y2="680" stroke="#555" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="600" cy="680" r="5" fill="#555" stroke="#222"/>
+<circle cx="800" cy="680" r="5" fill="#555" stroke="#222"/>
+<text x="592" y="684" font-size="12" fill="#222" text-anchor="end" >GND · pin 14</text>
+<rect x="800" y="660" width="190" height="40" rx="10" fill="#eceff1" stroke="#455a64" stroke-width="2"/>
+<text x="895" y="685" font-size="11" fill="#222" text-anchor="middle" >Knapp ben B + LED katode (−)</text>
+<text x="1000" y="604" font-size="11" fill="#666" text-anchor="start" >← knapp: GPIO27 til GND når trykket</text>
+<text x="30" y="800" font-size="12" fill="#666" text-anchor="start" >SPI0 deles av RC522 (CE0) og MCP3008 (CE1). Fargene er kun for oversikt – bruk gjerne egne ledningsfarger.</text>
+</svg>

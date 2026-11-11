@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 640" font-family="Segoe UI, Arial, sans-serif">
+<title>Kortspiller - kobling PN532</title>
+<rect width="100%" height="100%" fill="#fff"/>
+<text x="550" y="34" font-size="20" fill="#222" text-anchor="middle" font-weight="700">Kortspiller – kobling med PN532 (velg ÉN modus)</text>
+<text x="550" y="56" font-size="13" fill="#b91c1c" text-anchor="middle" >Sett DIP-bryterne på kortet først, og bruk 3,3 V som forsyning.</text>
+<text x="270" y="100" font-size="16" fill="#222" text-anchor="middle" font-weight="700">Alternativ A: I²C (anbefalt)</text>
+<rect x="40" y="114" width="130" height="180" rx="10" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+<text x="105" y="136" font-size="14" fill="#222" text-anchor="middle" font-weight="700">Pi</text>
+<rect x="370" y="114" width="130" height="180" rx="10" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+<text x="435" y="136" font-size="14" fill="#222" text-anchor="middle" font-weight="700">PN532</text>
+<line x1="170" y1="166" x2="370" y2="166" stroke="#e5484d" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="170" cy="166" r="5" fill="#e5484d" stroke="#222"/>
+<circle cx="370" cy="166" r="5" fill="#e5484d" stroke="#222"/>
+<text x="162" y="170" font-size="12" fill="#222" text-anchor="end" >pin 1 · 3V3</text>
+<text x="378" y="170" font-size="12" fill="#222" text-anchor="start" >VCC</text>
+<line x1="170" y1="206" x2="370" y2="206" stroke="#555" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="170" cy="206" r="5" fill="#555" stroke="#222"/>
+<circle cx="370" cy="206" r="5" fill="#555" stroke="#222"/>
+<text x="162" y="210" font-size="12" fill="#222" text-anchor="end" >pin 9 · GND</text>
+<text x="378" y="210" font-size="12" fill="#222" text-anchor="start" >GND</text>
+<line x1="170" y1="246" x2="370" y2="246" stroke="#3b82f6" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="170" cy="246" r="5" fill="#3b82f6" stroke="#222"/>
+<circle cx="370" cy="246" r="5" fill="#3b82f6" stroke="#222"/>
+<text x="162" y="250" font-size="12" fill="#222" text-anchor="end" >pin 3 · GPIO2 SDA</text>
+<text x="378" y="250" font-size="12" fill="#222" text-anchor="start" >SDA</text>
+<line x1="170" y1="286" x2="370" y2="286" stroke="#f59e0b" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="170" cy="286" r="5" fill="#f59e0b" stroke="#222"/>
+<circle cx="370" cy="286" r="5" fill="#f59e0b" stroke="#222"/>
+<text x="162" y="290" font-size="12" fill="#222" text-anchor="end" >pin 5 · GPIO3 SCL</text>
+<text x="378" y="290" font-size="12" fill="#222" text-anchor="start" >SCL</text>
+<text x="270" y="314" font-size="12" fill="#444" text-anchor="middle" >DIP: SW1 = ON, SW2 = OFF  (I²C)</text>
+<text x="810" y="100" font-size="16" fill="#222" text-anchor="middle" font-weight="700">Alternativ B: UART (HSU)</text>
+<rect x="580" y="114" width="130" height="180" rx="10" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+<text x="645" y="136" font-size="14" fill="#222" text-anchor="middle" font-weight="700">Pi</text>
+<rect x="910" y="114" width="130" height="180" rx="10" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+<text x="975" y="136" font-size="14" fill="#222" text-anchor="middle" font-weight="700">PN532</text>
+<line x1="710" y1="166" x2="910" y2="166" stroke="#e5484d" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="710" cy="166" r="5" fill="#e5484d" stroke="#222"/>
+<circle cx="910" cy="166" r="5" fill="#e5484d" stroke="#222"/>
+<text x="702" y="170" font-size="12" fill="#222" text-anchor="end" >pin 1 · 3V3</text>
+<text x="918" y="170" font-size="12" fill="#222" text-anchor="start" >VCC</text>
+<line x1="710" y1="206" x2="910" y2="206" stroke="#555" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="710" cy="206" r="5" fill="#555" stroke="#222"/>
+<circle cx="910" cy="206" r="5" fill="#555" stroke="#222"/>
+<text x="702" y="210" font-size="12" fill="#222" text-anchor="end" >pin 6 · GND</text>
+<text x="918" y="210" font-size="12" fill="#222" text-anchor="start" >GND</text>
+<line x1="710" y1="246" x2="910" y2="246" stroke="#3b82f6" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="710" cy="246" r="5" fill="#3b82f6" stroke="#222"/>
+<circle cx="910" cy="246" r="5" fill="#3b82f6" stroke="#222"/>
+<text x="702" y="250" font-size="12" fill="#222" text-anchor="end" >pin 8 · GPIO14 TXD</text>
+<text x="918" y="250" font-size="12" fill="#222" text-anchor="start" >RXD</text>
+<line x1="710" y1="286" x2="910" y2="286" stroke="#f59e0b" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="710" cy="286" r="5" fill="#f59e0b" stroke="#222"/>
+<circle cx="910" cy="286" r="5" fill="#f59e0b" stroke="#222"/>
+<text x="702" y="290" font-size="12" fill="#222" text-anchor="end" >pin 10 · GPIO15 RXD</text>
+<text x="918" y="290" font-size="12" fill="#222" text-anchor="start" >TXD</text>
+<text x="810" y="314" font-size="12" fill="#444" text-anchor="middle" >DIP: SW1 = OFF, SW2 = OFF  (HSU)</text>
+<text x="40" y="400" font-size="12" fill="#222" text-anchor="start" >I²C: legg  dtparam=i2c_arm=on,i2c_arm_baudrate=100000  i /boot/firmware/config.txt (Pi har klokkestrekk-feil ved høy hastighet).</text>
+<text x="40" y="422" font-size="12" fill="#222" text-anchor="start" >UART: slå av seriell konsoll, slå på seriellport (raspi-config → Interface → Serial). Bruk  Interface = "UART"  og  SerialPort = "/dev/serial0".</text>
+<text x="40" y="444" font-size="12" fill="#666" text-anchor="start" >Merk: kortets dip-bryter-oppsett varierer mellom produsenter (Elechouse V3 vist). Les trykket på kortet ditt.</text>
+<text x="40" y="480" font-size="12" fill="#222" text-anchor="start" >Volum-potmeter, pauseknapp og LED kobles likt som i kobling-rc522.svg (MCP3008 på SPI0 CE1, GPIO27, GPIO22).</text>
+<text x="40" y="502" font-size="12" fill="#222" text-anchor="start" >Hvis PN532 går på SPI i stedet: ikke kombiner med MCP3008 på samme CE – bruk CE0 for PN532 og CE1 for MCP3008.</text>
+</svg>
